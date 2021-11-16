@@ -1,0 +1,43 @@
+@import "../../styles/variables.scss";
+
+.list {
+    height: 100vh;
+    width: 30%;
+    overflow-y: scroll;
+    h2 {
+        color: $primary;
+        font-size: 1.8rem;
+        margin: 0;
+        padding: 2.4rem 0 2.4rem 2.4rem;
+        border-bottom: 1px solid $neutral-darker;
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        li {
+            font-size: 1.4rem;
+            padding: 2.4rem 0 2.4rem 3.6rem;
+            border-bottom: 1px solid $neutral-darker;
+            p {
+                margin: 0;
+                &.businessid {
+                    color: $primary;
+                    font-weight: 600;
+                    margin-bottom: 0.6rem;
+                }
+                &.address {
+                    color: $primary-light;
+                    font-size: 1.2rem;
+                    font-weight: 500;
+                }
+            }
+            &.selected {
+                background-color: $primary;
+                p {
+                    color: $white;
+                }
+            }
+        }
+    }
+}
