@@ -9,9 +9,10 @@ interface Props {
     clickedOrder?: Order,
     mapMarkers?: MutableRefObject<MarkerType[]>;
     setListitemRefs: (listItems: MutableRefObject<HTMLLIElement[]>) => void
+    isSidebarActive?: boolean
 }
 
-const List: React.FC<Props> = ({items, setClicked, setListitemRefs, clickedOrder, mapMarkers}) => {
+const List: React.FC<Props> = ({items, setClicked, setListitemRefs, clickedOrder, mapMarkers, isSidebarActive}) => {
     const [listItems, setListItems] = useState<Order[]>([]);
     const listItemRefs = useRef<HTMLLIElement[]>([])
 
@@ -30,7 +31,7 @@ const List: React.FC<Props> = ({items, setClicked, setListitemRefs, clickedOrder
     },[clickedOrder])
 
     return (
-        <div className="list">
+        <div className={`list ${isSidebarActive ? 'active' : ''}`} >
             <h2>Orders</h2>
             {
                 listItems
@@ -55,7 +56,6 @@ const List: React.FC<Props> = ({items, setClicked, setListitemRefs, clickedOrder
                     : <h2>empty</h2>
             }
         </div>
-
     );
 }
 

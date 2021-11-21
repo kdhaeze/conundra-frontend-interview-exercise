@@ -1,9 +1,12 @@
 @import "../../styles/variables.scss";
 
 .list {
+    position: relative;
     height: 100vh;
     width: 30%;
+    background-color: $white;
     overflow-y: scroll;
+    transition: left 0.4s;
     h2 {
         color: $primary;
         font-size: 1.8rem;
@@ -39,5 +42,25 @@
                 }
             }
         }
+    }
+    &.active {
+        display: block;
+        left: 0;
+        opacity: 1;
+        z-index: 10;
+    }
+}
+
+@media (max-width: 992px) {
+    .list {
+        display: none;
+        width: 50%;
+        left: -30%;
+    }
+}
+
+@media (max-width: 576px) {
+    .list {
+        width: 70%;
     }
 }

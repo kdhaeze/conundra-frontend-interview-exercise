@@ -1,5 +1,6 @@
 import { Marker as MarkerType } from 'leaflet';
 import { MutableRefObject, useEffect, useState } from "react";
+import SidebarButton from '../components/button/button';
 import List from '../components/list/list';
 import Map from '../components/map/map';
 import Order from '../types/order';
@@ -12,6 +13,7 @@ const MainPage = () => {
   const [clickedOrder, setClickedOrder] = useState<Order>();
   const [mapMarkers, setMapMarkers] = useState<MutableRefObject<MarkerType[]>>();
   const [listItems, setListItems] = useState<MutableRefObject<HTMLLIElement[]>>();
+  const [isSidebarActive, setIsSidebarActive] = useState<boolean>(false)
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -37,12 +39,18 @@ const MainPage = () => {
     setListItems(listItems);
   }
 
+  //Toggle the active class on the sidebar to show/hide the sidebar
+  const toggleSidebar = () => {
+    setIsSidebarActive(!isSidebarActive);
+  }
+
   return (
     <div className="main">
       <div className="container">
         {
-          allOrders.length ? <List items={allOrders} setListitemRefs={setListitemsRefs} setClicked={setClicked} mapMarkers={mapMarkers} clickedOrder={clickedOrder}/> : <div></div>
+          allOrders.length ? <List items={allOrders} setListitemRefs={setListitemsRefs} setClicked={setClicked} mapMarkers={mapMarkers} clickedOrder={clickedOrder} isSidebarActive={isSidebarActive}/> : <div></div>
         }
+        <SidebarButton text="☰" toggleSidebar={toggleSidebar}/>
         <Map items={allOrders} setMarkers={setMarkers} setClicked={setClicked} listItems={listItems} clickedOrder={clickedOrder}/>
       </div>
     </div>

@@ -1,3 +1,15 @@
 .map-container {
     width: 70%;
+    margin-left: 30%;
+    position: fixed !important;
+    transition: margin-left 0.4s, width 0.4s;
+    z-index: 1;
+}
+
+@media only screen and (max-width: 992px) {
+    .map-container {
+        width: 100%;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
 }

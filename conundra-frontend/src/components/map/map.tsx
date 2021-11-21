@@ -3,7 +3,7 @@ import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/leaflet.css';
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
-import { MapContainer, Marker, Polyline, Popup, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, Polyline, Popup, TileLayer, ZoomControl } from 'react-leaflet';
 import Order from '../../types/order';
 import './map.scss';
 
@@ -85,10 +85,9 @@ const Map: React.FC<Props> = ({ items, setClicked, setMarkers, clickedOrder, lis
     }
 
     return (
-
         centerLat !== 0 && centerLong !== 0
             ?
-            (<MapContainer center={[centerLat, centerLong]} zoom={10} scrollWheelZoom={false} style={{ height: '100vh', width: '100vw' }} className="map-container">
+            (<MapContainer center={[centerLat, centerLong]} zoom={10} scrollWheelZoom={false} style={{ height: '100vh' }} className="map-container" zoomControl={false}  >
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -119,6 +118,7 @@ const Map: React.FC<Props> = ({ items, setClicked, setMarkers, clickedOrder, lis
                 {
                     <Polyline pathOptions={{ color: '#3e6ca2' }} positions={allLatLong} smoothFactor={10} />
                 }
+                <ZoomControl position="topright"/>
             </MapContainer>)
             : null
     );
